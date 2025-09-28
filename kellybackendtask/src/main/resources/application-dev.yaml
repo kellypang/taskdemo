@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:hmctsdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: ""
+    # Removed explicit driver-class-name so Spring Boot auto-detects; prevents mismatch if env overrides URL
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 2
+      connection-timeout: 20000
+      idle-timeout: 300000
+      max-lifetime: 1200000
+      leak-detection-threshold: 60000
+  jpa:
+    # Let Hibernate auto-detect dialect from driver; safer if URL overridden to PostgreSQL via env var
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  flyway:
+    enabled: false
+  sql:
+    init:
+      # Only run schema script for embedded databases (H2); avoids executing H2-specific DDL on PostgreSQL if URL overridden
+      mode: embedded
+      schema-locations: classpath:schema-h2.sql

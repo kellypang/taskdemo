@@ -1,0 +1,59 @@
+server:
+  port: 4000
+  shutdown: "graceful"
+
+# Database health checks enabled for readiness probes
+management:
+  endpoint:
+    health:
+      show-details: "always"
+      group:
+        readiness:
+          include: "db"
+  endpoints:
+    web:
+      base-path: /
+      exposure:
+        include: info,health # include health for readiness probes in test-all.sh
+
+springdoc:
+  packagesToScan: uk.gov.hmcts.reform.dev.controllers
+  writer-with-order-by-keys: true
+  api-docs:
+    path: /openapi
+  swagger-ui:
+    path: /swagger-ui
+
+spring:
+  config:
+    import: "optional:configtree:/mnt/secrets/test/"
+  application:
+    name: Dev Test
+  profiles:
+    default: dev
+  datasource:
+    hikari:
+      # Production-optimized connection pool settings
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      leak-detection-threshold: 60000
+      # Enable connection validation
+      connection-test-query: SELECT 1
+  jpa:
+    # Optimize Hibernate for production
+    properties:
+      hibernate:
+        # Enable query plan cache
+        query.plan_cache_max_size: 128
+        query.plan_parameter_metadata_max_size: 32
+        # Enable second-level cache if needed
+        cache.use_second_level_cache: false
+        # Optimize batch processing
+        jdbc.batch_size: 20
+        order_inserts: true
+        order_updates: true
+    # Disable SQL logging in production
+    show-sql: false

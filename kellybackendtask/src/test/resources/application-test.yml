@@ -1,0 +1,36 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+    hikari:
+      maximum-pool-size: 2
+      minimum-idle: 1
+      connection-timeout: 10000
+      idle-timeout: 300000
+      max-lifetime: 600000
+      leak-detection-threshold: 60000
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        # Let Hibernate auto-detect the dialect to avoid warnings
+        format_sql: true
+    show-sql: true
+  h2:
+    console:
+      enabled: false
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.orm.jdbc.bind: trace
+# Explanation:
+# Tests default to 'test' profile (Spring Boot sets) when run with 'test' task if -Dspring.profiles.active isn't set.
+# This config uses an in-memory H2 database in PostgreSQL compatibility mode so Flyway/Hibernate can operate
+# without requiring a running external PostgreSQL instance. Integration tests that need real Postgres
+# should instead activate a different profile (e.g., 'devdb') or rely on Testcontainers.
+# NOTE: Removed explicit driverClassName to let Spring Boot auto-detect the driver from the JDBC URL.
+# This prevents a mismatch when an external environment variable (SPRING_DATASOURCE_URL) points to a
+# PostgreSQL URL while this profile is active; previously org.h2.Driver + jdbc:postgresql URL caused
+# "Driver org.h2.Driver claims to not accept" runtime exceptions.

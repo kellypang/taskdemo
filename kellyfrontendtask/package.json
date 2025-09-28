@@ -1,0 +1,52 @@
+{
+  "name": "kellyfrontendtask",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:coverage:unit": "vitest run --coverage --passWithNoTests src/__tests__/CreateTask.test.jsx src/__tests__/TaskDetails.test.jsx src/__tests__/TaskListView.test.jsx",
+    "test:coverage:integration": "vitest run --coverage --passWithNoTests src/__tests__/api.searchTasks.test.jsx src/__tests__/SearchTasks.test.jsx src/__tests__/api.listTasks.normalize.test.jsx",
+    "test:coverage:functional": "vitest run --coverage --passWithNoTests src/__tests__/*Flow.test.jsx src/__tests__/*Functional.test.jsx",
+    "test:coverage:smoke": "vitest run --coverage --passWithNoTests src/__tests__/TaskListView.test.jsx",
+    "test:coverage:all:cat": "npm run test:coverage:unit && npm run test:coverage:integration && npm run test:coverage:functional && npm run test:coverage:smoke",
+    "test:logs": "node ../scripts/unified-test-logger.js kellyfrontendtask unit npm run test",
+    "test:errors": "node ../scripts/unified-test-logger.js kellyfrontendtask unit npm run test",
+    "_note_test_categories": "Categorised test groups used by root test-all.sh (patterns intentionally match that script)",
+    "test:unit:cat": "vitest run --passWithNoTests src/__tests__/CreateTask.test.jsx src/__tests__/TaskDetails.test.jsx src/__tests__/TaskListView.test.jsx",
+    "test:functional:cat": "vitest run --passWithNoTests src/__tests__/*Flow.test.jsx src/__tests__/*Functional.test.jsx",
+    "test:integration:cat": "vitest run --passWithNoTests src/__tests__/api.searchTasks.test.jsx src/__tests__/SearchTasks.test.jsx src/__tests__/api.listTasks.normalize.test.jsx",
+    "test:smoke:cat": "vitest run --passWithNoTests src/__tests__/TaskListView.test.jsx",
+    "test:all:cat": "npm run test:unit:cat && npm run test:integration:cat && npm run test:smoke:cat",
+    "e2e:init": "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 node ./scripts/playwright-install.js",
+    "e2e": "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 PLAYWRIGHT_BROWSERS_PATH=0 playwright test --reporter=line",
+    "e2e:simple": "node tests-e2e/simple-http-test.js",
+    "e2e:ui": "playwright test --ui",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "axios": "^1.11.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.26.2"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0",
+    "@testing-library/jest-dom": "^6.4.8",
+    "@testing-library/react": "^16.0.0",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/node": "^22.5.5",
+    "@vitejs/plugin-react": "^5.0.0",
+    "@vitest/coverage-v8": "^3.2.4",
+    "jsdom": "^27.0.0",
+    "typescript": "^5.6.2",
+    "vite": "^7.1.7",
+    "vitest": "^3.2.4"
+  }
+}

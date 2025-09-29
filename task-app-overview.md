@@ -1,10 +1,8 @@
-> **Deprecated**: This document has been consolidated into the main `../README.md` for better organization. The high-level overview and architecture information is now available in the root README.
-
 # Task Management Application - High-Level Overview
 
 ## 🎯 **What Is This Application?**
 
-A **production-ready, full-stack task management system** that demonstrates modern software engineering practices with comprehensive testing, clean architecture, and robust documentation. Built with Spring Boot (backend) and React/Vite (frontend), it provides complete CRUD operations for task management with advanced search capabilities.
+A **full-stack task management system** that demonstrates modern software engineering practices with comprehensive testing, clean architecture, and robust documentation. Built with Spring Boot (backend) and React/Vite (frontend), it provides complete CRUD operations for task management with advanced search capabilities.
 
 ## 🏗️ **Architecture Overview**
 
@@ -67,7 +65,7 @@ A **production-ready, full-stack task management system** that demonstrates mode
 
 ### **Status Management**
 
-- 📋 Status Workflow: `NEW` → `PENDING` → `IN_PROGRESS` → `COMPLETED` → `APPROVED`
+- 📋 Status Workflow: `NEW` → `PENDING` → `IN_PROGRESS` → `COMPLETED` → `APPROVED` → `CANCELLED`
 - 🔄 Status Updates: Quick status changes without full form editing
 - 📊 Status Filtering: Filter tasks by current status for workflow management
 
@@ -234,21 +232,6 @@ Backend Testing:
    # Frontend build in: kellyfrontendtask/dist/
    ```
 
-### **Testing & Validation**
-
-```sh
-# Run complete test suite
-./test-all.sh
-
-# Run specific test categories
-./test-all.sh backend_unit       # Backend unit tests only
-./test-all.sh frontend_unit      # Frontend unit tests only
-./test-all.sh api_e2e           # API end-to-end tests
-./test-all.sh ui_e2e            # UI end-to-end tests
-
-# Quick E2E validation
-./e2e.sh
-```
 
 ## 📈 **Key Benefits & Features**
 
@@ -289,6 +272,5 @@ This application is ideal for:
 
 - **Frontend Details**: `kellyfrontendtask/README.md`
 - **Backend Details**: `kellybackendtask/README.md`
-- **API Documentation**: `docs/api-endpoints.md`
-- **Test Coverage**: `docs/comprehensive-test-coverage.md`
+- **API Documentation**: `api-endpoints.md`
 - **Setup Guide**: Root `README.md`

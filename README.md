@@ -41,7 +41,8 @@ npm install && npm run dev
 | ---------------------------------------------------------------------------- | ------------------------------ |
 | [`kellybackendtask/README.md`](kellybackendtask/README.md)                   | Backend API documentation      |
 | [`kellyfrontendtask/README.md`](kellyfrontendtask/README.md)                 | Frontend application guide     |
-| [`docs/api-endpoints.md`](docs/api-endpoints.md)                             | API reference                  |
+| [`api-endpoints.md`](api-endpoints.md)                                       | API reference                  |
+| [`task-app-overview.md`](task-app-overview.md)                               | High Level Overview            |
 
 ## ✅ Core Features
 
